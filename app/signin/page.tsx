@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -44,7 +45,13 @@ export default function SignInPage() {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Access your Blockover Corp dashboard
+            Don't have an account?{" "}
+            <Link
+              href="/signup"
+              className="font-medium text-gray-900 hover:text-gray-700"
+            >
+              Sign up
+            </Link>
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

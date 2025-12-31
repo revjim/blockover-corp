@@ -134,9 +134,17 @@ export default function DashboardPage() {
         <div className="mt-8">
           <div className="overflow-hidden rounded-lg bg-white shadow">
             <div className="p-6">
-              <h2 className="text-lg font-semibold text-gray-900">
-                Account Information
-              </h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Account Information
+                </h2>
+                <a
+                  href="/settings"
+                  className="text-sm font-medium text-gray-900 hover:text-gray-700"
+                >
+                  Manage Account →
+                </a>
+              </div>
               <div className="mt-4 space-y-3">
                 <div>
                   <span className="text-sm font-medium text-gray-500">
