@@ -3,7 +3,4 @@ import { authOptions } from "@/lib/auth";
 
 const handler = NextAuth(authOptions);
 
-// @ts-expect-error - NextAuth compatibility issue with Next.js 16
-export const GET = handler;
-// @ts-expect-error - NextAuth compatibility issue with Next.js 16
-export const POST = handler;
+export { handler as GET, handler as POST };
