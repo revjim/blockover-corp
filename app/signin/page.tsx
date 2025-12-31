@@ -104,15 +104,6 @@ export default function SignInPage() {
               {loading ? "Signing in..." : "Sign in"}
             </button>
           </div>
-
-          <div className="text-center text-sm text-gray-600">
-            <p>Demo credentials for testing:</p>
-            <p className="mt-1 font-mono text-xs">
-              Email: demo@blockover.com
-              <br />
-              Password: demo123
-            </p>
-          </div>
         </form>
       </div>
     </div>
