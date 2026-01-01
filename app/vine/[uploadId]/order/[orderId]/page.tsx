@@ -121,7 +121,7 @@ function OrderDetailContent() {
     setLoading(true);
     setOrder(null);
 
-    router.push(`/vine/${uploadId}/order/${newOrderId}?index=${newIdx}`);
+    router.push(`/vine/${uploadId}/order/${newOrderId}`);
   };
 
   if (status === "loading" || loading) {
@@ -161,7 +161,7 @@ function OrderDetailContent() {
             ← Previous
           </button>
           <div className="text-sm font-medium text-gray-900">
-            Item #{currentPosition} of {totalOrders}
+            Order Details
           </div>
           <button
             onClick={() => navigateTo("next")}

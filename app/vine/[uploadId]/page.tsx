@@ -212,7 +212,7 @@ export default function VineOrdersPage() {
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
                       <Link
-                        href={`/vine/${uploadId}/order/${order.id}?index=${(page - 1) * 50 + index}`}
+                        href={`/vine/${uploadId}/order/${order.id}`}
                         className="text-gray-900 hover:text-gray-700"
                       >
                         Details →
