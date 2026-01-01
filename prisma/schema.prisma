@@ -38,16 +38,18 @@ model Session {
 }
 
 model User {
-  id             String    @id @default(cuid())
+  id             String       @id @default(cuid())
   name           String?
-  email          String?   @unique
+  email          String?      @unique
   emailVerified  DateTime?
   image          String?
   hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
   accounts       Account[]
   sessions       Session[]
+  uploads        Upload[]
+  subscriptionPlan String?    @default("basic") // basic, premium, enterprise
 }
 
 model VerificationToken {
@@ -56,4 +58,56 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Upload {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  filename    String
+  uploadedAt  DateTime @default(now())
+  orders      VineOrder[]
+
+  @@index([userId, uploadedAt])
+}
+
+model VineOrder {
+  id              String   @id @default(cuid())
+  uploadId        String
+  upload          Upload   @relation(fields: [uploadId], references: [id], onDelete: Cascade)
+
+  // Amazon Vine order data
+  orderNumber     String
+  orderDate       DateTime?
+  orderType       String?  // e.g., "Order", "Cancellation"
+  asin            String
+  productName     String
+  estimatedValue  Decimal? @db.Decimal(10, 2)
+
+  // User-entered data
+  userNotes       String?  @db.Text
+  userFmv         Decimal? @db.Decimal(10, 2)
+
+  // Computed FMV based on user's subscription
+  computedFmv     Decimal? @db.Decimal(10, 2)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  asinData        Asin?    @relation(fields: [asin], references: [asin])
+
+  @@index([uploadId])
+  @@index([asin])
+  @@index([orderNumber])
+}
+
+model Asin {
+  asin         String      @id
+  productName  String
+  imageUrl     String?
+  category     String?
+  lastUpdated  DateTime    @default(now()) @updatedAt
+  orders       VineOrder[]
+
+  @@index([productName])
 }
