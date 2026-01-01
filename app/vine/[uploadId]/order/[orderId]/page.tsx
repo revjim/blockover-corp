@@ -255,7 +255,7 @@ function OrderDetailContent() {
                 </div>
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Estimated Value
+                    Amazon ETV
                   </p>
                   <p className="mt-1 text-sm text-gray-900">
                     {order.estimatedValue

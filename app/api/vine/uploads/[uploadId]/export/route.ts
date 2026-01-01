@@ -66,7 +66,7 @@ export async function GET(
         "Order Type",
         "ASIN",
         "Product Name",
-        "Estimated Value",
+        "Amazon ETV",
         "ZTV",
         "User FMV",
         "User Notes",
