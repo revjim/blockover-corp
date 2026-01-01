@@ -32,7 +32,21 @@ export async function POST(request: NextRequest) {
     const workbook = XLSX.read(buffer, { type: "array" });
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
-    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+    // Try parsing normally first
+    let jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+    // Check if first row looks like a title row (Amazon Vine Itemized Report format)
+    if (jsonData.length > 0 && jsonData[0]) {
+      const firstRowKeys = Object.keys(jsonData[0]);
+      // If we see "__EMPTY" columns or "Itemized Report", it's the Amazon Vine format
+      // Row 0: Title, Row 1: Empty, Row 2: Headers, Row 3+: Data
+      if (firstRowKeys.some(key => key.startsWith('__EMPTY')) ||
+          firstRowKeys.some(key => key.includes('Itemized Report'))) {
+        // Re-parse starting from row 3 (index 2), using row 3 (index 2) as headers
+        jsonData = XLSX.utils.sheet_to_json(worksheet, { range: 2 });
+      }
+    }
 
     if (jsonData.length === 0) {
       return NextResponse.json(
@@ -60,7 +74,7 @@ export async function POST(request: NextRequest) {
       const orderType = row["Order Type"] || row["OrderType"] || row["order_type"] || "Order";
       const asin = row["ASIN"] || row["asin"] || "";
       const productName = row["Product Name"] || row["ProductName"] || row["product_name"] || "";
-      const estimatedValue = row["Estimated Value"] || row["EstimatedValue"] || row["estimated_value"];
+      const estimatedValue = row["Estimated Tax Value"] || row["Estimated Value"] || row["EstimatedValue"] || row["estimated_value"];
 
       if (!asin || !orderNumber) {
         continue; // Skip rows without ASIN or order number
