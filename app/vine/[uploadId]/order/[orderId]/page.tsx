@@ -116,6 +116,11 @@ function OrderDetailContent() {
     if (newIdx >= allOrderIds.length) newIdx = 0;
 
     const newOrderId = allOrderIds[newIdx];
+
+    // Clear current order data to force refresh
+    setLoading(true);
+    setOrder(null);
+
     router.push(`/vine/${uploadId}/order/${newOrderId}?index=${newIdx}`);
   };
 
