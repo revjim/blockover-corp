@@ -49,6 +49,7 @@ function OrderDetailContent() {
 
   useEffect(() => {
     if (session && uploadId && orderId) {
+      setLoading(true);
       fetchOrder();
       fetchAllOrderIds();
     }
