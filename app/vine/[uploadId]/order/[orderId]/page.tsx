@@ -265,15 +265,12 @@ function OrderDetailContent() {
                 </div>
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Computed FMV
+                    ZTV
                   </p>
                   <p className="mt-1 text-sm font-semibold text-gray-900">
                     {order.computedFmv
                       ? `$${parseFloat(order.computedFmv).toFixed(2)}`
                       : "N/A"}
-                  </p>
-                  <p className="mt-0.5 text-xs text-gray-500">
-                    (Based on your subscription plan)
                   </p>
                 </div>
               </div>

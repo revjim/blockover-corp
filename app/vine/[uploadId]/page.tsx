@@ -156,7 +156,7 @@ export default function VineOrdersPage() {
                     onClick={() => handleSort("computedFmv")}
                     className="cursor-pointer px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 hover:bg-gray-100"
                   >
-                    Est. FMV{" "}
+                    ZTV{" "}
                     {sortBy === "computedFmv" &&
                       (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
