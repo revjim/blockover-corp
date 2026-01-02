@@ -5,9 +5,10 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { uploadId: string } }
+  { params }: { params: Promise<{ uploadId: string }> }
 ) {
   try {
+    const { uploadId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
@@ -25,7 +26,7 @@ export async function GET(
     // Verify upload belongs to user
     const upload = await prisma.upload.findFirst({
       where: {
-        id: params.uploadId,
+        id: uploadId,
         userId: user.id,
       },
     });
@@ -36,7 +37,7 @@ export async function GET(
 
     // Get all orders for this upload
     const orders = await prisma.vineOrder.findMany({
-      where: { uploadId: params.uploadId },
+      where: { uploadId: uploadId },
       include: {
         asinData: true,
       },
@@ -47,9 +48,9 @@ export async function GET(
     const orderNumbers = orders.map((o) => o.orderNumber);
     const cancellations = await prisma.vineOrder.findMany({
       where: {
-        uploadId: params.uploadId,
+        uploadId: uploadId,
         orderNumber: { in: orderNumbers },
-        orderType: "Cancellation",
+        orderType: { equals: "Cancellation", mode: "insensitive" },
       },
       select: { orderNumber: true },
     });

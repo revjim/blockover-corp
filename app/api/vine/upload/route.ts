@@ -74,7 +74,10 @@ export async function POST(request: NextRequest) {
       const orderType = row["Order Type"] || row["OrderType"] || row["order_type"] || "Order";
       const asin = row["ASIN"] || row["asin"] || "";
       const productName = row["Product Name"] || row["ProductName"] || row["product_name"] || "";
-      const estimatedValue = row["Estimated Tax Value"] || row["Estimated Value"] || row["EstimatedValue"] || row["estimated_value"];
+
+      // Use nullish coalescing (??) instead of || to preserve zero values
+      // The || operator treats 0 as falsy, which would skip zero values
+      const estimatedValue = row["Estimated Tax Value"] ?? row["Estimated Value"] ?? row["EstimatedValue"] ?? row["estimated_value"];
 
       if (!asin || !orderNumber) {
         continue; // Skip rows without ASIN or order number
@@ -99,7 +102,8 @@ export async function POST(request: NextRequest) {
 
       // Parse estimated value
       let parsedValue: number | null = null;
-      if (estimatedValue) {
+
+      if (estimatedValue !== null && estimatedValue !== undefined && estimatedValue !== "") {
         const numValue = typeof estimatedValue === "number"
           ? estimatedValue
           : parseFloat(String(estimatedValue).replace(/[$,]/g, ""));

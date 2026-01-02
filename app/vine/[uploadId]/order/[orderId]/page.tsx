@@ -31,7 +31,10 @@ function OrderDetailContent() {
   const searchParams = useSearchParams();
   const uploadId = params.uploadId as string;
   const orderId = params.orderId as string;
-  const currentIndex = parseInt(searchParams.get("index") || "0");
+
+  // Get sort parameters from URL
+  const sortBy = searchParams.get("sortBy") || "orderDate";
+  const sortOrder = (searchParams.get("sortOrder") || "desc") as "asc" | "desc";
 
   const [order, setOrder] = useState<Order | null>(null);
   const [allOrderIds, setAllOrderIds] = useState<string[]>([]);
@@ -50,6 +53,7 @@ function OrderDetailContent() {
   useEffect(() => {
     if (session && uploadId && orderId) {
       setLoading(true);
+      setOrder(null); // Clear previous order data
       fetchOrder();
       fetchAllOrderIds();
     }
@@ -72,7 +76,7 @@ function OrderDetailContent() {
   const fetchAllOrderIds = async () => {
     try {
       const response = await fetch(
-        `/api/vine/uploads/${uploadId}?page=1&limit=10000`
+        `/api/vine/uploads/${uploadId}?page=1&limit=10000&sortBy=${sortBy}&sortOrder=${sortOrder}`
       );
       const data = await response.json();
       const ids = data.orders.map((o: Order) => o.id);
@@ -116,12 +120,8 @@ function OrderDetailContent() {
     if (newIdx >= allOrderIds.length) newIdx = 0;
 
     const newOrderId = allOrderIds[newIdx];
-
-    // Clear current order data to force refresh
-    setLoading(true);
-    setOrder(null);
-
-    router.push(`/vine/${uploadId}/order/${newOrderId}`);
+    // Preserve sort parameters when navigating
+    router.push(`/vine/${uploadId}/order/${newOrderId}?sortBy=${sortBy}&sortOrder=${sortOrder}`);
   };
 
   if (status === "loading" || loading) {
@@ -146,7 +146,7 @@ function OrderDetailContent() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="mb-4">
           <Link
-            href={`/vine/${uploadId}`}
+            href={`/vine/${uploadId}?sortBy=${sortBy}&sortOrder=${sortOrder}`}
             className="text-sm font-medium text-gray-600 hover:text-gray-900"
           >
             ← Back to Orders
@@ -185,7 +185,7 @@ function OrderDetailContent() {
           </div>
         )}
 
-        {order.orderType === "Cancellation" && (
+        {order.orderType?.toUpperCase() === "CANCELLATION" && (
           <div className="mb-4 rounded-md bg-yellow-50 p-4">
             <div className="text-sm font-medium text-yellow-800">
               ⚠️ This is a cancellation record
@@ -264,7 +264,7 @@ function OrderDetailContent() {
                     Amazon ETV
                   </p>
                   <p className="mt-1 text-sm text-gray-900">
-                    {order.estimatedValue
+                    {order.estimatedValue !== null && order.estimatedValue !== undefined
                       ? `$${parseFloat(order.estimatedValue).toFixed(2)}`
                       : "N/A"}
                   </p>
@@ -274,7 +274,7 @@ function OrderDetailContent() {
                     ZTV
                   </p>
                   <p className="mt-1 text-sm font-semibold text-gray-900">
-                    {order.computedFmv
+                    {order.computedFmv !== null && order.computedFmv !== undefined
                       ? `$${parseFloat(order.computedFmv).toFixed(2)}`
                       : "N/A"}
                   </p>
@@ -353,6 +353,9 @@ function OrderDetailContent() {
 }
 
 export default function OrderDetailPage() {
+  const params = useParams();
+  const orderId = params.orderId as string;
+
   return (
     <Suspense
       fallback={
@@ -363,7 +366,7 @@ export default function OrderDetailPage() {
         </div>
       }
     >
-      <OrderDetailContent />
+      <OrderDetailContent key={orderId} />
     </Suspense>
   );
 }

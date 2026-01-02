@@ -1,8 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useRouter, useParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 
 interface Order {
@@ -28,10 +28,11 @@ interface Upload {
   uploadedAt: string;
 }
 
-export default function VineOrdersPage() {
+function VineOrdersContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const uploadId = params.uploadId as string;
 
   const [upload, setUpload] = useState<Upload | null>(null);
@@ -40,8 +41,10 @@ export default function VineOrdersPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
-  const [sortBy, setSortBy] = useState("orderDate");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+
+  // Read sort params directly from URL (no state needed)
+  const sortBy = searchParams.get("sortBy") || "orderDate";
+  const sortOrder = (searchParams.get("sortOrder") || "desc") as "asc" | "desc";
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -73,12 +76,9 @@ export default function VineOrdersPage() {
   };
 
   const handleSort = (field: string) => {
-    if (sortBy === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortBy(field);
-      setSortOrder("desc");
-    }
+    const newSortOrder = sortBy === field ? (sortOrder === "asc" ? "desc" : "asc") : "desc";
+    // Update URL with new sort parameters
+    router.push(`/vine/${uploadId}?sortBy=${field}&sortOrder=${newSortOrder}`);
   };
 
   if (status === "loading" || loading) {
@@ -138,8 +138,13 @@ export default function VineOrdersPage() {
                     Order Date{" "}
                     {sortBy === "orderDate" && (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Order #
+                  <th
+                    onClick={() => handleSort("orderNumber")}
+                    className="cursor-pointer px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 hover:bg-gray-100"
+                  >
+                    Order #{" "}
+                    {sortBy === "orderNumber" &&
+                      (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
                   <th
                     onClick={() => handleSort("productName")}
@@ -149,8 +154,20 @@ export default function VineOrdersPage() {
                     {sortBy === "productName" &&
                       (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    ASIN
+                  <th
+                    onClick={() => handleSort("asin")}
+                    className="cursor-pointer px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 hover:bg-gray-100"
+                  >
+                    ASIN{" "}
+                    {sortBy === "asin" && (sortOrder === "asc" ? "↑" : "↓")}
+                  </th>
+                  <th
+                    onClick={() => handleSort("estimatedValue")}
+                    className="cursor-pointer px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 hover:bg-gray-100"
+                  >
+                    Amazon ETV{" "}
+                    {sortBy === "estimatedValue" &&
+                      (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
                   <th
                     onClick={() => handleSort("computedFmv")}
@@ -160,8 +177,12 @@ export default function VineOrdersPage() {
                     {sortBy === "computedFmv" &&
                       (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Your FMV
+                  <th
+                    onClick={() => handleSort("userFmv")}
+                    className="cursor-pointer px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 hover:bg-gray-100"
+                  >
+                    Your FMV{" "}
+                    {sortBy === "userFmv" && (sortOrder === "asc" ? "↑" : "↓")}
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                     Status
@@ -189,7 +210,12 @@ export default function VineOrdersPage() {
                       {order.asin}
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
-                      {order.computedFmv
+                      {order.estimatedValue !== null && order.estimatedValue !== undefined
+                        ? `$${parseFloat(order.estimatedValue).toFixed(2)}`
+                        : "N/A"}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
+                      {order.computedFmv !== null && order.computedFmv !== undefined
                         ? `$${parseFloat(order.computedFmv).toFixed(2)}`
                         : "N/A"}
                     </td>
@@ -204,7 +230,7 @@ export default function VineOrdersPage() {
                           Cancelled
                         </span>
                       )}
-                      {order.orderType === "Cancellation" && (
+                      {order.orderType?.toUpperCase() === "CANCELLATION" && (
                         <span className="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800">
                           Cancellation
                         </span>
@@ -212,7 +238,7 @@ export default function VineOrdersPage() {
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
                       <Link
-                        href={`/vine/${uploadId}/order/${order.id}`}
+                        href={`/vine/${uploadId}/order/${order.id}?sortBy=${sortBy}&sortOrder=${sortOrder}`}
                         className="text-gray-900 hover:text-gray-700"
                       >
                         Details →
@@ -246,5 +272,21 @@ export default function VineOrdersPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function VineOrdersPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-gray-50">
+          <div className="text-center">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-900 border-t-transparent"></div>
+          </div>
+        </div>
+      }
+    >
+      <VineOrdersContent />
+    </Suspense>
   );
 }

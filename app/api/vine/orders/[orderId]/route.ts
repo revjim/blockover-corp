@@ -5,9 +5,10 @@ import { prisma } from "@/lib/prisma";
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }> }
 ) {
   try {
+    const { orderId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
@@ -27,7 +28,7 @@ export async function PATCH(
     // Verify order belongs to user's upload
     const order = await prisma.vineOrder.findFirst({
       where: {
-        id: params.orderId,
+        id: orderId,
         upload: {
           userId: user.id,
         },
@@ -40,7 +41,7 @@ export async function PATCH(
 
     // Update order
     const updatedOrder = await prisma.vineOrder.update({
-      where: { id: params.orderId },
+      where: { id: orderId },
       data: {
         userNotes,
         userFmv: userFmv ? parseFloat(userFmv) : null,
@@ -62,9 +63,10 @@ export async function PATCH(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }> }
 ) {
   try {
+    const { orderId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
@@ -82,7 +84,7 @@ export async function GET(
     // Get order with ASIN data
     const order = await prisma.vineOrder.findFirst({
       where: {
-        id: params.orderId,
+        id: orderId,
         upload: {
           userId: user.id,
         },
@@ -101,7 +103,7 @@ export async function GET(
       where: {
         uploadId: order.uploadId,
         orderNumber: order.orderNumber,
-        orderType: "Cancellation",
+        orderType: { equals: "Cancellation", mode: "insensitive" },
       },
     });
 
