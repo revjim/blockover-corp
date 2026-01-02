@@ -32,9 +32,10 @@ function OrderDetailContent() {
   const uploadId = params.uploadId as string;
   const orderId = params.orderId as string;
 
-  // Get sort parameters from URL
+  // Get sort and view parameters from URL
   const sortBy = searchParams.get("sortBy") || "orderDate";
   const sortOrder = (searchParams.get("sortOrder") || "desc") as "asc" | "desc";
+  const viewMode = searchParams.get("view") || "chiclet";
 
   const [order, setOrder] = useState<Order | null>(null);
   const [allOrderIds, setAllOrderIds] = useState<string[]>([]);
@@ -120,15 +121,16 @@ function OrderDetailContent() {
     if (newIdx >= allOrderIds.length) newIdx = 0;
 
     const newOrderId = allOrderIds[newIdx];
-    // Preserve sort parameters when navigating
-    router.push(`/vine/${uploadId}/order/${newOrderId}?sortBy=${sortBy}&sortOrder=${sortOrder}`);
+    // Preserve sort and view parameters when navigating
+    router.push(`/vine/${uploadId}/order/${newOrderId}?sortBy=${sortBy}&sortOrder=${sortOrder}&view=${viewMode}`);
   };
 
   if (status === "loading" || loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
         <div className="text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-900 border-t-transparent"></div>
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-purple-500 border-t-transparent shadow-lg shadow-purple-500/50"></div>
+          <p className="mt-4 text-sm font-medium text-gray-400">Loading order details...</p>
         </div>
       </div>
     );
@@ -142,74 +144,97 @@ function OrderDetailContent() {
   const currentPosition = allOrderIds.indexOf(orderId) + 1;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 py-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
           <Link
-            href={`/vine/${uploadId}?sortBy=${sortBy}&sortOrder=${sortOrder}`}
-            className="text-sm font-medium text-gray-600 hover:text-gray-900"
+            href={`/vine/${uploadId}?sortBy=${sortBy}&sortOrder=${sortOrder}&view=${viewMode}`}
+            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
           >
-            ← Back to Orders
+            <svg className="h-4 w-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Orders
           </Link>
         </div>
 
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-6 flex items-center justify-between rounded-xl bg-gray-800/50 border border-gray-700/50 backdrop-blur-sm p-4">
           <button
             onClick={() => navigateTo("prev")}
-            className="rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
+            className="group flex items-center gap-2 rounded-lg bg-gray-700/50 px-4 py-2 text-sm font-medium text-gray-300 transition-all hover:bg-gray-700 hover:text-white"
           >
-            ← Previous
+            <svg className="h-4 w-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous
           </button>
-          <div className="text-sm font-medium text-gray-900">
-            Order Details
+          <div className="text-center">
+            <div className="text-xs text-gray-500">Order Details</div>
+            <div className="text-sm font-semibold text-white">
+              {currentPosition} of {totalOrders}
+            </div>
           </div>
           <button
             onClick={() => navigateTo("next")}
-            className="rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
+            className="group flex items-center gap-2 rounded-lg bg-gray-700/50 px-4 py-2 text-sm font-medium text-gray-300 transition-all hover:bg-gray-700 hover:text-white"
           >
-            Next →
+            Next
+            <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
 
         {message && (
-          <div className="mb-4 rounded-md bg-green-50 p-4">
-            <div className="text-sm text-green-800">{message}</div>
+          <div className="mb-6 rounded-xl bg-green-500/10 border border-green-500/20 p-4 backdrop-blur-sm animate-in fade-in slide-in-from-top-2">
+            <div className="flex items-center gap-2 text-sm font-medium text-green-400">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              {message}
+            </div>
           </div>
         )}
 
         {order.isCancelled && (
-          <div className="mb-4 rounded-md bg-red-50 p-4">
-            <div className="text-sm font-medium text-red-800">
-              ⚠️ This order has a matching cancellation
+          <div className="mb-6 rounded-xl bg-red-500/10 border border-red-500/20 p-4 backdrop-blur-sm">
+            <div className="flex items-center gap-2 text-sm font-medium text-red-400">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              This order has a matching cancellation
             </div>
           </div>
         )}
 
         {order.orderType?.toUpperCase() === "CANCELLATION" && (
-          <div className="mb-4 rounded-md bg-yellow-50 p-4">
-            <div className="text-sm font-medium text-yellow-800">
-              ⚠️ This is a cancellation record
+          <div className="mb-6 rounded-xl bg-yellow-500/10 border border-yellow-500/20 p-4 backdrop-blur-sm">
+            <div className="flex items-center gap-2 text-sm font-medium text-yellow-400">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              This is a cancellation record
             </div>
           </div>
         )}
 
-        <div className="overflow-hidden rounded-lg bg-white shadow">
-          <div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
+        <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm shadow-2xl">
+          <div className="grid grid-cols-1 gap-8 p-8 lg:grid-cols-2">
             <div>
               {order.asinData?.imageUrl ? (
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-100">
+                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gray-800/30 border border-gray-700/50">
                   <Image
                     src={order.asinData.imageUrl}
                     alt={order.productName}
                     fill
-                    className="object-contain"
+                    className="object-contain p-4"
                   />
                 </div>
               ) : (
-                <div className="flex aspect-square w-full items-center justify-center rounded-lg bg-gray-100">
-                  <div className="text-center text-gray-400">
+                <div className="flex aspect-square w-full items-center justify-center rounded-xl bg-gray-800/30 border border-gray-700/50">
+                  <div className="text-center text-gray-500">
                     <svg
-                      className="mx-auto h-12 w-12"
+                      className="mx-auto h-16 w-16"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -221,59 +246,59 @@ function OrderDetailContent() {
                         d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                       />
                     </svg>
-                    <p className="mt-2 text-sm">No image available</p>
+                    <p className="mt-3 text-sm">No image available</p>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
                   {order.productName}
                 </h1>
-                <p className="mt-1 text-sm text-gray-500">ASIN: {order.asin}</p>
+                <p className="mt-2 text-sm text-gray-400">ASIN: <span className="text-gray-300 font-mono">{order.asin}</span></p>
                 {order.asinData?.category && (
-                  <p className="text-sm text-gray-500">
-                    Category: {order.asinData.category}
+                  <p className="mt-1 text-sm text-gray-400">
+                    Category: <span className="text-gray-300">{order.asinData.category}</span>
                   </p>
                 )}
               </div>
 
-              <div className="grid grid-cols-2 gap-4 border-t border-gray-200 pt-4">
-                <div>
+              <div className="grid grid-cols-2 gap-4 border-t border-gray-700/50 pt-6">
+                <div className="rounded-lg bg-gray-700/30 p-4">
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
                     Order Number
                   </p>
-                  <p className="mt-1 text-sm text-gray-900">
+                  <p className="mt-2 text-sm font-semibold text-white">
                     {order.orderNumber}
                   </p>
                 </div>
-                <div>
+                <div className="rounded-lg bg-gray-700/30 p-4">
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
                     Order Date
                   </p>
-                  <p className="mt-1 text-sm text-gray-900">
+                  <p className="mt-2 text-sm font-semibold text-white">
                     {order.orderDate
                       ? new Date(order.orderDate).toLocaleDateString()
                       : "N/A"}
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-4">
+                  <p className="text-xs font-medium uppercase tracking-wider text-amber-400">
                     Amazon ETV
                   </p>
-                  <p className="mt-1 text-sm text-gray-900">
+                  <p className="mt-2 text-lg font-bold text-amber-400">
                     {order.estimatedValue !== null && order.estimatedValue !== undefined
                       ? `$${parseFloat(order.estimatedValue).toFixed(2)}`
                       : "N/A"}
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-4">
+                  <p className="text-xs font-medium uppercase tracking-wider text-purple-400">
                     ZTV
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-gray-900">
+                  <p className="mt-2 text-lg font-bold text-purple-400">
                     {order.computedFmv !== null && order.computedFmv !== undefined
                       ? `$${parseFloat(order.computedFmv).toFixed(2)}`
                       : "N/A"}
@@ -281,15 +306,15 @@ function OrderDetailContent() {
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-gray-700/50 pt-6">
                 <label
                   htmlFor="userFmv"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   Your Fair Market Value Estimate
                 </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">
+                <div className="mt-2 flex rounded-lg bg-gray-700/30 border border-gray-600 overflow-hidden focus-within:ring-2 focus-within:ring-cyan-500 focus-within:border-transparent transition-all">
+                  <span className="inline-flex items-center px-4 text-gray-400 font-semibold">
                     $
                   </span>
                   <input
@@ -299,7 +324,7 @@ function OrderDetailContent() {
                     min="0"
                     value={userFmv}
                     onChange={(e) => setUserFmv(e.target.value)}
-                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
+                    className="block w-full bg-transparent border-0 px-3 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-0"
                     placeholder="0.00"
                   />
                 </div>
@@ -308,7 +333,7 @@ function OrderDetailContent() {
               <div>
                 <label
                   htmlFor="userNotes"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   Your Notes
                 </label>
@@ -317,7 +342,7 @@ function OrderDetailContent() {
                   rows={4}
                   value={userNotes}
                   onChange={(e) => setUserNotes(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
+                  className="mt-2 block w-full rounded-lg bg-gray-700/30 border border-gray-600 px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
                   placeholder="Add notes about this item..."
                 />
               </div>
@@ -325,28 +350,29 @@ function OrderDetailContent() {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="w-full rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 disabled:opacity-50"
+                className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:shadow-xl hover:shadow-purple-500/40 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                {saving ? "Saving..." : "Save Changes"}
+                {saving ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Saving...
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Save Changes
+                  </span>
+                )}
               </button>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 flex justify-between">
-          <button
-            onClick={() => navigateTo("prev")}
-            className="rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
-          >
-            ← Previous Item
-          </button>
-          <button
-            onClick={() => navigateTo("next")}
-            className="rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
-          >
-            Next Item →
-          </button>
-        </div>
       </div>
     </div>
   );
@@ -359,9 +385,10 @@ export default function OrderDetailPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
           <div className="text-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-900 border-t-transparent"></div>
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-purple-500 border-t-transparent shadow-lg shadow-purple-500/50"></div>
+            <p className="mt-4 text-sm font-medium text-gray-400">Loading order details...</p>
           </div>
         </div>
       }
