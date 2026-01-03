@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import * as XLSX from "xlsx";
+import { put } from "@vercel/blob";
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,6 +30,21 @@ export async function POST(request: NextRequest) {
 
     // Read the Excel file
     const buffer = await file.arrayBuffer();
+
+    // Save backup copy to Vercel Blob storage (never deleted)
+    try {
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const blobPath = `backups/${user.id}/${timestamp}-${file.name}`;
+
+      await put(blobPath, buffer, {
+        access: 'public', // Note: robots.txt will prevent indexing
+        addRandomSuffix: false,
+      });
+    } catch (blobError) {
+      console.error("Failed to save backup to blob storage:", blobError);
+      // Continue with upload even if backup fails
+    }
+
     const workbook = XLSX.read(buffer, { type: "array" });
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];

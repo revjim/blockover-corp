@@ -1,0 +1,10 @@
+# Main website robots.txt
+User-agent: *
+Allow: /
+
+# Prevent crawling of any blob storage URLs
+User-agent: *
+Disallow: /backups/
+Disallow: *.blob.vercel-storage.com
+
+Sitemap: https://www.zeroetv.com/sitemap.xml
