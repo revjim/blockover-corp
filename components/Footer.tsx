@@ -53,17 +53,17 @@ export function Footer() {
           </div>
           <div className="col-span-2">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
-              Blockover Corp
+              ZeroETV
             </h3>
             <p className="mt-4 text-base text-gray-300">
-              Delivering exceptional value through innovative project management
-              and business solutions for enterprises worldwide.
+              Professional Amazon Vine order tracking and verification platform
+              for streamlined workflow management.
             </p>
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8">
           <p className="text-center text-base text-gray-400">
-            &copy; {new Date().getFullYear()} Blockover Corp. All rights
+            &copy; {new Date().getFullYear()} ZeroETV. All rights
             reserved.
           </p>
         </div>

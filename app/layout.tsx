@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Blockover Corp - Enterprise Project Management Solutions",
-  description: "Delivering exceptional value through innovative project management and business solutions for enterprises worldwide.",
+  title: "ZeroETV - Enterprise Tracking & Verification",
+  description: "Professional Amazon Vine order tracking and verification platform for enterprise users.",
 };
 
 export default function RootLayout({

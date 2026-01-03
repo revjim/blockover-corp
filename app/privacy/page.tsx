@@ -10,7 +10,7 @@ export default function PrivacyPage() {
         <div className="prose prose-gray mt-8 max-w-none">
           <h2>1. Introduction</h2>
           <p>
-            Blockover Corp ("we," "our," or "us") is committed to protecting
+            ZeroETV ("we," "our," or "us") is committed to protecting
             your privacy. This Privacy Policy explains how we collect, use,
             disclose, and safeguard your information when you use our services.
           </p>
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
           <h2>9. Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, please contact
-            us at: privacy@blockover.com
+            us at: privacy@zeroetv.com
           </p>
         </div>
       </div>

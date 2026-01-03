@@ -1,13 +1,15 @@
-# Blockover Corp Website
+# ZeroETV
 
-A modern corporate website built with Next.js 14, TypeScript, NextAuth, and Prisma.
+A professional Amazon Vine order tracking and verification platform built with Next.js 14, TypeScript, NextAuth, and Prisma.
 
 ## Features
 
 - Modern, responsive design with Tailwind CSS
 - NextAuth authentication with credentials provider
 - PostgreSQL database with Prisma ORM
-- Protected dashboard routes
+- Amazon Vine order tracking and management
+- Excel file import for Vine orders
+- Statistics dashboard for order analytics
 - Privacy Policy and Terms of Service pages
 - TypeScript for type safety
 
@@ -24,7 +26,7 @@ A modern corporate website built with Next.js 14, TypeScript, NextAuth, and Pris
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd blockover-corp
+cd zero-etv
 ```
 
 2. Install dependencies:
@@ -39,7 +41,7 @@ cp .env.example .env
 
 Edit `.env` and add your database URL and NextAuth secret:
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/blockover"
+DATABASE_URL="postgresql://user:password@localhost:5432/zeroetv"
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET="your-secret-key"
 ```
@@ -65,10 +67,11 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 ## Project Structure
 
 ```
-blockover-corp/
+zero-etv/
 ├── app/
 │   ├── api/auth/[...nextauth]/   # NextAuth API routes
-│   ├── dashboard/                 # Protected dashboard page
+│   ├── vine/                      # Vine order tracking pages
+│   ├── account/                   # User account management
 │   ├── privacy/                   # Privacy policy page
 │   ├── terms/                     # Terms of service page
 │   ├── layout.tsx                 # Root layout
@@ -79,7 +82,8 @@ blockover-corp/
 │   └── SessionProvider.tsx        # NextAuth session provider
 ├── lib/
 │   ├── auth.ts                    # NextAuth configuration
-│   └── prisma.ts                  # Prisma client
+│   ├── prisma.ts                  # Prisma client
+│   └── email.ts                   # Email utilities
 └── prisma/
     └── schema.prisma              # Database schema
 ```
@@ -92,6 +96,7 @@ The application uses Prisma with PostgreSQL. The schema includes:
 - **Account**: OAuth account information
 - **Session**: User session management
 - **VerificationToken**: Email verification tokens
+- **VineOrder**: Amazon Vine order tracking with status and metadata
 
 ## Authentication
 
@@ -143,4 +148,4 @@ NEXTAUTH_SECRET="your-production-secret"
 
 ## License
 
-Copyright © 2024 Blockover Corp. All rights reserved.
+Copyright © 2024-2025 ZeroETV. All rights reserved.

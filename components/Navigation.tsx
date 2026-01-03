@@ -27,7 +27,7 @@ export default function Navigation() {
               </div>
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Blockover Corp
+              ZeroETV
             </span>
           </Link>
 
@@ -77,16 +77,10 @@ export default function Navigation() {
             ) : (
               <>
                 <Link
-                  href="/#solutions"
+                  href="/#how-it-works"
                   className="px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-white"
                 >
-                  Solutions
-                </Link>
-                <Link
-                  href="/#about"
-                  className="px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-white"
-                >
-                  About
+                  How It Works
                 </Link>
                 <div className="h-6 w-px bg-gray-700"></div>
                 <Link
@@ -97,9 +91,9 @@ export default function Navigation() {
                 </Link>
                 <Link
                   href="/signup"
-                  className="rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:shadow-xl hover:shadow-purple-500/40 hover:scale-105"
+                  className="rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-green-500/25 transition-all hover:shadow-xl hover:shadow-green-500/40 hover:scale-105"
                 >
-                  Get Started
+                  Start Free
                 </Link>
               </>
             )}
@@ -167,18 +161,11 @@ export default function Navigation() {
             ) : (
               <>
                 <Link
-                  href="/#solutions"
+                  href="/#how-it-works"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block rounded-lg px-4 py-3 text-base font-medium text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white"
                 >
-                  Solutions
-                </Link>
-                <Link
-                  href="/#about"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block rounded-lg px-4 py-3 text-base font-medium text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white"
-                >
-                  About
+                  How It Works
                 </Link>
                 <div className="border-t border-gray-800 my-2 pt-2 space-y-2">
                   <Link
@@ -191,9 +178,9 @@ export default function Navigation() {
                   <Link
                     href="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-purple-500/25"
+                    className="block rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-3 text-center text-base font-semibold text-white shadow-lg shadow-green-500/25"
                   >
-                    Get Started
+                    Start Free
                   </Link>
                 </div>
               </>

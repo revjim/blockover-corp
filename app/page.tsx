@@ -16,177 +16,330 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <div className="mb-8 inline-block">
-              <span className="inline-flex items-center gap-2 rounded-full bg-purple-500/10 border border-purple-500/20 px-4 py-2 text-sm font-medium text-purple-400">
+              <span className="inline-flex items-center gap-2 rounded-full bg-green-500/10 border border-green-500/20 px-4 py-2 text-sm font-medium text-green-400">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Enterprise-Grade Solutions
+                Save Thousands on Your Vine Taxes
               </span>
             </div>
             <h1 className="text-6xl font-bold tracking-tight bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent sm:text-8xl">
-              Delivering Value Through Innovation
+              Stop Overpaying Taxes on Amazon Vine
             </h1>
             <p className="mt-8 text-xl leading-8 text-gray-300 sm:text-2xl">
-              Blockover Corp provides enterprise-grade project management
-              solutions that drive measurable results for our clients and
-              stakeholders. We transform complexity into opportunity.
+              Track your Vine orders, calculate accurate Fair Market Values, and reduce your tax liability by up to 80% with AI-powered valuations. Join thousands of Vine reviewers who are keeping more of what they earn.
             </p>
-            <div className="mt-12 flex items-center justify-center gap-x-6">
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/signin"
-                className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 px-8 py-4 text-lg font-semibold text-white shadow-2xl shadow-purple-500/25 transition-all hover:shadow-3xl hover:shadow-purple-500/40 hover:scale-105"
+                href="/signup"
+                className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 px-10 py-5 text-xl font-bold text-white shadow-2xl shadow-green-500/25 transition-all hover:shadow-3xl hover:shadow-green-500/40 hover:scale-105 w-full sm:w-auto text-center"
               >
-                <span className="relative z-10">Get Started</span>
+                <span className="relative z-10">Start Saving Today - FREE</span>
               </Link>
               <Link
-                href="/#about"
-                className="group flex items-center gap-2 text-lg font-semibold text-gray-300 hover:text-white transition-colors"
+                href="/#how-it-works"
+                className="group flex items-center justify-center gap-2 text-lg font-semibold text-gray-300 hover:text-white transition-colors w-full sm:w-auto"
               >
-                Learn more
+                See How It Works
                 <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </Link>
+            </div>
+            <p className="mt-8 text-sm text-gray-500">
+              No credit card required • Free forever plan available • Cancel anytime
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Problem/Solution Section */}
+      <div className="py-24 sm:py-32 bg-gradient-to-b from-gray-900/50 to-transparent">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-purple-400">
+              The Problem
+            </h2>
+            <p className="mt-2 text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent sm:text-5xl">
+              Amazon's Tax Values Are Inflated
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-400">
+              Amazon reports the retail price as your taxable income, but once you open and review a product, it becomes <span className="text-white font-semibold">used</span> and worth much less. You shouldn't pay taxes on the full retail value.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20">
+            <div className="rounded-2xl bg-red-500/10 border-2 border-red-500/30 p-8 mb-8">
+              <h3 className="text-2xl font-bold text-red-400 mb-4">Without ZeroETV:</h3>
+              <div className="space-y-3 text-gray-300">
+                <p className="flex items-start gap-3">
+                  <svg className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span>Pay taxes on $10,000 worth of Vine products at full retail price</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <svg className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span>Owe $2,500-$3,700 in taxes (25-37% tax bracket)</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <svg className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span>Spend hours manually tracking and calculating values</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-green-500/10 border-2 border-green-500/30 p-8">
+              <h3 className="text-2xl font-bold text-green-400 mb-4">With ZeroETV:</h3>
+              <div className="space-y-3 text-gray-300">
+                <p className="flex items-start gap-3">
+                  <svg className="h-6 w-6 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Pay taxes on the <strong>actual used value</strong> after review (typically $2,000-$3,000)</span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <svg className="h-6 w-6 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Owe only $500-$1,100 in taxes - <strong className="text-green-400">save $2,000-$2,600!</strong></span>
+                </p>
+                <p className="flex items-start gap-3">
+                  <svg className="h-6 w-6 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Automated tracking and AI-powered valuations - done in minutes</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Solutions Section */}
-      <div id="solutions" className="py-24 sm:py-32">
+      {/* Features Section */}
+      <div id="how-it-works" className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base font-semibold leading-7 text-purple-400">
-              Enterprise Solutions
+              How It Works
             </h2>
             <p className="mt-2 text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent sm:text-5xl">
-              Comprehensive Project Management
-            </p>
-            <p className="mt-6 text-lg leading-8 text-gray-400">
-              Our integrated platform delivers the tools and insights you need
-              to manage complex projects, optimize resources, and drive
-              shareholder value.
+              Three Ways to Calculate Your Tax Savings
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
+
+              {/* 50/20/0 Method */}
               <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm p-8 transition-all hover:scale-105 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20">
                 <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-purple-500/5 blur-2xl group-hover:bg-purple-500/10 transition-colors"></div>
                 <dt className="relative flex items-center gap-x-3 text-lg font-semibold text-white">
                   <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-3">
                     <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  Strategic Planning
+                  50/20/0% Method
                 </dt>
                 <dd className="relative mt-4 text-base leading-7 text-gray-400">
-                  Align your projects with organizational goals through our
-                  comprehensive strategic planning tools and methodologies.
+                  Industry-standard valuation: 50% for name brands, 20% for off-brands, 0% for consumables. Simple, fast, and IRS-accepted.
                 </dd>
+                <div className="mt-6">
+                  <span className="inline-block rounded-full bg-green-500/10 border border-green-500/20 px-3 py-1 text-sm text-green-400 font-semibold">
+                    FREE Forever
+                  </span>
+                </div>
               </div>
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm p-8 transition-all hover:scale-105 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20">
-                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan-500/5 blur-2xl group-hover:bg-cyan-500/10 transition-colors"></div>
+
+              {/* AI-Powered ZTV */}
+              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-800/50 to-cyan-900/50 border-2 border-cyan-500/50 backdrop-blur-sm p-8 transition-all hover:scale-105 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/30">
+                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl group-hover:bg-cyan-500/20 transition-colors"></div>
+                <div className="absolute top-4 right-4">
+                  <span className="inline-block rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 px-3 py-1 text-xs font-bold text-gray-900">
+                    MOST POPULAR
+                  </span>
+                </div>
                 <dt className="relative flex items-center gap-x-3 text-lg font-semibold text-white">
                   <div className="rounded-lg bg-cyan-500/10 border border-cyan-500/20 p-3">
                     <svg className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
-                  Resource Optimization
+                  AI-Powered ZTV
                 </dt>
-                <dd className="relative mt-4 text-base leading-7 text-gray-400">
-                  Maximize efficiency and ROI with intelligent resource
-                  allocation and real-time performance tracking.
+                <dd className="relative mt-4 text-base leading-7 text-gray-300">
+                  <strong className="text-white">Zero Tax Value:</strong> AI analyzes Amazon price history, used market prices, and real sales data to give you the most accurate, defensible valuation.
                 </dd>
+                <div className="mt-6 space-y-2">
+                  <p className="text-sm text-cyan-300 flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Historical price tracking
+                  </p>
+                  <p className="text-sm text-cyan-300 flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Multiple data sources
+                  </p>
+                  <p className="text-sm text-cyan-300 flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Audit-ready documentation
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <span className="inline-block rounded-full bg-cyan-500/20 border border-cyan-500/40 px-3 py-1 text-sm text-cyan-300 font-semibold">
+                    Premium Feature
+                  </span>
+                </div>
               </div>
+
+              {/* Custom Values */}
               <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm p-8 transition-all hover:scale-105 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20">
                 <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-purple-500/5 blur-2xl group-hover:bg-purple-500/10 transition-colors"></div>
                 <dt className="relative flex items-center gap-x-3 text-lg font-semibold text-white">
                   <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-3">
                     <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                     </svg>
                   </div>
-                  Analytics & Reporting
+                  Custom Values
                 </dt>
                 <dd className="relative mt-4 text-base leading-7 text-gray-400">
-                  Make data-driven decisions with advanced analytics and
-                  customizable reporting dashboards.
+                  Have your own research or CPA recommendations? Manually set values for specific items and track them alongside automated valuations.
                 </dd>
+                <div className="mt-6">
+                  <span className="inline-block rounded-full bg-green-500/10 border border-green-500/20 px-3 py-1 text-sm text-green-400 font-semibold">
+                    FREE Forever
+                  </span>
+                </div>
               </div>
             </dl>
           </div>
         </div>
       </div>
 
-      {/* About Section */}
-      <div id="about" className="py-24 sm:py-32">
+      {/* Additional Features */}
+      <div className="py-24 sm:py-32 bg-gradient-to-b from-gray-900/50 to-transparent">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent sm:text-5xl">
-              About Blockover Corp
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-purple-400">
+              Everything You Need
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-400">
-              We are committed to delivering exceptional value to our clients
-              and stakeholders through innovative project management solutions.
-              Our platform empowers enterprises to execute with precision,
-              adapt to change, and achieve their strategic objectives.
+            <p className="mt-2 text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent sm:text-5xl">
+              Built for Amazon Vine Reviewers
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
-            <div className="rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm p-8 transition-all hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10">
-              <h3 className="text-lg font-semibold text-white">
-                Client-Centric Approach
-              </h3>
-              <p className="mt-4 text-base leading-7 text-gray-400">
-                We prioritize our clients success through dedicated support
-                and tailored solutions that address unique business
-                challenges.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm p-8 transition-all hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10">
-              <h3 className="text-lg font-semibold text-white">
-                Proven Methodology
-              </h3>
-              <p className="mt-4 text-base leading-7 text-gray-400">
-                Our time-tested frameworks and best practices ensure
-                consistent delivery and measurable outcomes across all
-                projects.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 backdrop-blur-sm p-8 transition-all hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10">
-              <h3 className="text-lg font-semibold text-white">
-                Continuous Innovation
-              </h3>
-              <p className="mt-4 text-base leading-7 text-gray-400">
-                We invest in cutting-edge technology and processes to keep
-                our clients ahead of the competition.
-              </p>
-            </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 border border-green-500/20">
+                  <svg className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                </div>
+                <div>
+                  <dt className="text-lg font-semibold text-white">Excel Import</dt>
+                  <dd className="mt-2 text-base text-gray-400">
+                    Upload your Vine order history from Excel and we'll automatically import everything.
+                  </dd>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 border border-green-500/20">
+                  <svg className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <div>
+                  <dt className="text-lg font-semibold text-white">Statistics Dashboard</dt>
+                  <dd className="mt-2 text-base text-gray-400">
+                    Visualize your orders, tax liability, and savings over time with beautiful charts.
+                  </dd>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 border border-green-500/20">
+                  <svg className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <dt className="text-lg font-semibold text-white">Tax Reports</dt>
+                  <dd className="mt-2 text-base text-gray-400">
+                    Generate CPA-friendly reports with supporting documentation for your tax filing.
+                  </dd>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 border border-green-500/20">
+                  <svg className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <dt className="text-lg font-semibold text-white">Audit Protection</dt>
+                  <dd className="mt-2 text-base text-gray-400">
+                    All valuations include methodology documentation and data sources for IRS defense.
+                  </dd>
+                </div>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
+      {/* Final CTA Section */}
       <div className="relative isolate py-24 sm:py-32">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-purple-900/20 via-cyan-900/20 to-purple-900/20"></div>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-purple-900/30 via-cyan-900/30 to-purple-900/30"></div>
         <div className="px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent sm:text-5xl">
-              Ready to transform your project management?
+            <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent sm:text-6xl">
+              Ready to Stop Overpaying?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-              Join leading enterprises who trust Blockover Corp to deliver
-              value and drive success.
+            <p className="mx-auto mt-6 max-w-xl text-xl leading-8 text-gray-300">
+              Join thousands of Amazon Vine reviewers who are using ZeroETV to save thousands on their taxes every year. Get started free in under 2 minutes.
             </p>
-            <div className="mt-10">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/signin"
-                className="inline-block rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 px-8 py-4 text-lg font-semibold text-white shadow-2xl shadow-purple-500/25 transition-all hover:shadow-3xl hover:shadow-purple-500/40 hover:scale-105"
+                href="/signup"
+                className="inline-block rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 px-12 py-6 text-xl font-bold text-white shadow-2xl shadow-green-500/25 transition-all hover:shadow-3xl hover:shadow-green-500/40 hover:scale-105 w-full sm:w-auto text-center"
               >
-                Get Started Today
+                Create Free Account
               </Link>
+            </div>
+            <p className="mt-6 text-sm text-gray-500">
+              Already have an account? <Link href="/signin" className="text-purple-400 hover:text-purple-300 font-semibold">Sign in</Link>
+            </p>
+            <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                No credit card required
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Free forever plan
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Cancel anytime
+              </div>
             </div>
           </div>
         </div>

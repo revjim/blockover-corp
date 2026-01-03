@@ -10,7 +10,7 @@ export default function TermsPage() {
         <div className="prose prose-gray mt-8 max-w-none">
           <h2>1. Acceptance of Terms</h2>
           <p>
-            By accessing and using Blockover Corp's services, you accept and
+            By accessing and using ZeroETV's services, you accept and
             agree to be bound by the terms and provision of this agreement.
           </p>
 
@@ -45,7 +45,7 @@ export default function TermsPage() {
 
           <h2>4. Limitations</h2>
           <p>
-            In no event shall Blockover Corp or its suppliers be liable for any
+            In no event shall ZeroETV or its suppliers be liable for any
             damages (including, without limitation, damages for loss of data or
             profit, or due to business interruption) arising out of the use or
             inability to use our services.
@@ -82,14 +82,14 @@ export default function TermsPage() {
           <h2>9. Account Terms</h2>
           <p>
             You are responsible for maintaining the security of your account and
-            password. Blockover Corp cannot and will not be liable for any loss
+            password. ZeroETV cannot and will not be liable for any loss
             or damage from your failure to comply with this security obligation.
           </p>
 
           <h2>10. Contact Information</h2>
           <p>
             Questions about the Terms of Service should be sent to us at:
-            legal@blockover.com
+            legal@zeroetv.com
           </p>
         </div>
       </div>
