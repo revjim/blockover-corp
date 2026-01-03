@@ -344,6 +344,53 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-800 bg-gray-950">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {/* Disclaimers */}
+            <div className="lg:col-span-2">
+              <h3 className="text-sm font-semibold text-gray-400 mb-4">Important Disclaimers</h3>
+              <div className="space-y-3 text-xs text-gray-500">
+                <p>
+                  <strong className="text-gray-400">Not Tax or Legal Advice:</strong> ZeroETV provides software tools for tracking and calculating fair market values. We do not provide tax, legal, or financial advice. Please consult with a qualified tax professional or CPA regarding your specific tax situation.
+                </p>
+                <p>
+                  <strong className="text-gray-400">Not Affiliated with Amazon:</strong> ZeroETV is an independent third-party service and is not affiliated with, endorsed by, or sponsored by Amazon.com, Inc. or Amazon Vine. Amazon and Amazon Vine are trademarks of Amazon.com, Inc. or its affiliates.
+                </p>
+                <p>
+                  <strong className="text-gray-400">Your Responsibility:</strong> Users are solely responsible for the accuracy of their tax reporting and compliance with applicable tax laws. ZeroETV provides valuation tools and methodologies, but final tax reporting decisions rest with you and your tax advisor.
+                </p>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-400 mb-4">Legal</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/terms" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy" className="text-gray-500 hover:text-gray-300 transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="mt-8 border-t border-gray-800 pt-8">
+            <p className="text-xs text-gray-600 text-center">
+              © {new Date().getFullYear()} ZeroETV. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
