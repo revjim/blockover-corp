@@ -51,14 +51,14 @@ function VerifyEmailContent() {
   }, [searchParams, router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
-        <div className="rounded-lg bg-white p-8 shadow">
+        <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-8 shadow-2xl">
           {status === "loading" && (
             <>
               <div className="mx-auto flex h-12 w-12 items-center justify-center">
                 <svg
-                  className="h-8 w-8 animate-spin text-gray-900"
+                  className="h-8 w-8 animate-spin text-purple-400"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -78,7 +78,7 @@ function VerifyEmailContent() {
                   ></path>
                 </svg>
               </div>
-              <h2 className="mt-6 text-center text-2xl font-bold text-gray-900">
+              <h2 className="mt-6 text-center text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Verifying your email...
               </h2>
             </>
@@ -86,9 +86,9 @@ function VerifyEmailContent() {
 
           {status === "success" && (
             <>
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10 border border-green-500/30">
                 <svg
-                  className="h-6 w-6 text-green-600"
+                  className="h-6 w-6 text-green-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -101,13 +101,13 @@ function VerifyEmailContent() {
                   />
                 </svg>
               </div>
-              <h2 className="mt-6 text-center text-2xl font-bold text-gray-900">
+              <h2 className="mt-6 text-center text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Email verified!
               </h2>
-              <p className="mt-2 text-center text-sm text-gray-600">
+              <p className="mt-2 text-center text-sm text-gray-300">
                 {message}
               </p>
-              <p className="mt-4 text-center text-sm text-gray-600">
+              <p className="mt-4 text-center text-sm text-gray-400">
                 Redirecting to sign in...
               </p>
             </>
@@ -115,9 +115,9 @@ function VerifyEmailContent() {
 
           {status === "error" && (
             <>
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 border border-red-500/30">
                 <svg
-                  className="h-6 w-6 text-red-600"
+                  className="h-6 w-6 text-red-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -130,16 +130,16 @@ function VerifyEmailContent() {
                   />
                 </svg>
               </div>
-              <h2 className="mt-6 text-center text-2xl font-bold text-gray-900">
+              <h2 className="mt-6 text-center text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Verification failed
               </h2>
-              <p className="mt-2 text-center text-sm text-gray-600">
+              <p className="mt-2 text-center text-sm text-gray-400">
                 {message}
               </p>
               <div className="mt-6">
                 <Link
                   href="/signup"
-                  className="flex w-full justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800"
+                  className="flex w-full justify-center rounded-md bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:from-green-600 hover:to-emerald-600 shadow-lg shadow-green-500/25"
                 >
                   Back to Sign Up
                 </Link>
@@ -156,9 +156,9 @@ export default function VerifyEmailPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
           <div className="text-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-900 border-t-transparent"></div>
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-purple-400 border-t-transparent"></div>
           </div>
         </div>
       }

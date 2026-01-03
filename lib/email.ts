@@ -7,7 +7,7 @@ export async function sendVerificationEmail(email: string, token: string) {
 
   try {
     await resend.emails.send({
-      from: "ZeroETV <onboarding@resend.dev>",
+      from: "ZeroETV <noreply@zeroetv.com>",
       to: email,
       subject: "Verify your email address",
       html: `
@@ -44,7 +44,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 
   try {
     await resend.emails.send({
-      from: "ZeroETV <onboarding@resend.dev>",
+      from: "ZeroETV <noreply@zeroetv.com>",
       to: email,
       subject: "Reset your password",
       html: `
