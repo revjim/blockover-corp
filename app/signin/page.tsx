@@ -95,6 +95,17 @@ export default function SignInPage() {
             </div>
           </div>
 
+          <div className="flex items-center justify-end">
+            <div className="text-sm">
+              <Link
+                href="/forgot-password"
+                className="font-medium text-gray-900 hover:text-gray-700"
+              >
+                Forgot your password?
+              </Link>
+            </div>
+          </div>
+
           <div>
             <button
               type="submit"
