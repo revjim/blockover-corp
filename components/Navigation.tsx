@@ -49,14 +49,14 @@ export default function Navigation() {
                   <span className="relative">Vine Orders</span>
                 </Link>
                 <Link
-                  href="/account"
+                  href="/settings"
                   className={`group relative px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive('/account')
+                    isActive('/settings')
                       ? 'text-white'
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  {isActive('/account') && (
+                  {isActive('/settings') && (
                     <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30"></span>
                   )}
                   <span className="relative">Account</span>
@@ -133,10 +133,10 @@ export default function Navigation() {
                   Vine Orders
                 </Link>
                 <Link
-                  href="/account"
+                  href="/settings"
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                    isActive('/account')
+                    isActive('/settings')
                       ? 'bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 text-white'
                       : 'text-gray-400 hover:bg-gray-800/50 hover:text-white'
                   }`}
