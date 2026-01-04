@@ -172,7 +172,7 @@ export default function Home() {
                   AI-Powered ZTV
                 </dt>
                 <dd className="relative mt-4 text-base leading-7 text-gray-300">
-                  <strong className="text-white">ZTV (Zero Tax Value):</strong> AI analyzes Amazon price history, used market prices, and real sales data to give you the most accurate, defensible valuation. You can use the ZTV estimate, or use it as a data point to come up with your own value.
+                  <strong className="text-white">ZTV:</strong> This is our own AI-powered ZeroETV estimated tax value. We analyze Amazon price history, used market prices, and real sales data to give you the most accurate, defensible valuation. You can use the ZTV, or use it as a data point to come up with your own value.
                 </dd>
                 <div className="mt-6 space-y-2">
                   <p className="text-sm text-cyan-300 flex items-center gap-2">
