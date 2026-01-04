@@ -191,7 +191,7 @@ export default function Home() {
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Upload photos of items for sale elsewhere
+                    Upload your own photos or screenshots of items for sale elsewhere
                   </p>
                   <p className="text-sm text-cyan-300 flex items-center gap-2">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
