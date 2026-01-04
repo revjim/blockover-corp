@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
       {/* Hero Section */}
-      <div className="relative isolate px-6 pt-32 lg:px-8">
+      <div className="relative isolate px-6 pt-8 lg:px-8">
         {/* Animated background gradients */}
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-purple-600 to-cyan-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
@@ -13,7 +13,7 @@ export default function Home() {
           <div className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-cyan-600 to-purple-600 opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
+        <div className="relative z-10 mx-auto max-w-4xl py-16 sm:py-20 lg:py-24">
           <div className="text-center">
             <div className="mb-8 inline-block">
               <span className="inline-flex items-center gap-2 rounded-full bg-green-500/10 border border-green-500/20 px-4 py-2 text-sm font-medium text-green-400">
