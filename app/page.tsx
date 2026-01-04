@@ -146,7 +146,7 @@ export default function Home() {
                   50/20/0% Method
                 </dt>
                 <dd className="relative mt-4 text-base leading-7 text-gray-400">
-                  Industry-standard valuation: 50% for name brands, 20% for off-brands, 0% for consumables. Simple, fast, and IRS-accepted.
+                  Industry-standard valuation: 50% for name brands, 20% for off-brands, 0% for consumables. Simple, fast, and IRS-accepted. Add notes about item condition, whether it was consumed or destroyed during testing, and track donation or disposal dates.
                 </dd>
                 <div className="mt-6">
                   <span className="inline-block rounded-full bg-green-500/10 border border-green-500/20 px-3 py-1 text-sm text-green-400 font-semibold">
@@ -186,6 +186,18 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     Multiple data sources
+                  </p>
+                  <p className="text-sm text-cyan-300 flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Upload photos of items for sale elsewhere
+                  </p>
+                  <p className="text-sm text-cyan-300 flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Track donation and disposal dates
                   </p>
                   <p className="text-sm text-cyan-300 flex items-center gap-2">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
