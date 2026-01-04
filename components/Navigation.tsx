@@ -18,20 +18,17 @@ export default function Navigation() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-10 w-10 transition-transform group-hover:scale-110">
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-12 transition-transform group-hover:scale-105">
               <Image
                 src="/images/logo.png"
-                alt="ZeroETV Logo"
-                width={40}
-                height={40}
-                className="object-contain"
+                alt="ZeroETV"
+                width={180}
+                height={48}
+                className="object-contain h-12 w-auto"
                 priority
               />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              ZeroETV
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
